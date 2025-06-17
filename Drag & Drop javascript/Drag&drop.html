@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag & Drop | L </title>
+  <link rel="stylesheet" href="Drag&drop.css">
+</head>
+<body>
+ 
+  <div class="container">
+   
+    <div id="left">
+      <div class="list" draggable="true"><img src="./paw.png" >Luna</div>
+      <div class="list" draggable="true"><img src="./paw.png" >Bella</div>
+      <div class="list" draggable="true"><img src="./paw.png" >Charlie</div>
+      <div class="list" draggable="true"><img src="./paw.png" >Milo</div>
+    </div>
+    <div id="right"></div>
+  </div>
+  
+
+  <script>
+    let lists = document.getElementsByClassName("list");
+    let rightBox = document.getElementById("right");
+    let leftBox = document.getElementById("left");
+
+    for (list of lists){
+      list.addEventListener ("dragstart",function(e){
+        let selected = e.target;
+
+       // When you start dragging an item, it saves that item in the selected variable.
+       // e.target means “the item you clicked on.”
+
+
+        rightBox.addEventListener("dragover",function(e){
+          e.preventDefault();
+        });
+        //e.preventDefault() is required for dropping to work.
+
+        rightBox.addEventListener("drop",function(e){
+          rightBox.appendChild(selected);
+          selected = null;
+
+        });
+        //When you drop the item into the right box, it gets added there.
+
+
+        leftBox.addEventListener("dragover",function(e){
+          e.preventDefault();
+        });
+
+        leftBox.addEventListener("drop",function(e){
+          leftBox.appendChild(selected);
+          selected = null;
+
+        });
+      })
+    }
+
+
+  </script>
+</body>
+</html>
